@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { getEquipmentPhoto } from "./equipmentPhotos.js";
 const categories = ["Audio", "Cameras", "Computing", "Accessories"];
 function Icon({ name, size = 20, ...props }) {
   const paths = {
@@ -110,17 +111,35 @@ const artIcons = {
   Computing: "computer",
   Accessories: "accessory",
 };
-function Art({ category, name }) {
+function Art({ category = "Accessories", name = "", compact = false }) {
+  const photo = getEquipmentPhoto(name);
+  const [failedSrc, setFailedSrc] = useState(null);
+  const className = "art art-" + category.toLowerCase() + (compact ? " art--compact" : "");
+  if (photo && failedSrc !== photo.src) {
+    return (
+      <div className={className + " equipment-photo"}>
+        <img
+          src={photo.src}
+          alt={photo.alt}
+          loading="lazy"
+          decoding="async"
+          width="960"
+          height="640"
+          onError={() => setFailedSrc(photo.src)}
+        />
+        {!compact && photo.reference && <span className="photo-note">Reference photo</span>}
+      </div>
+    );
+  }
   return (
-    <div className={"art art-" + category.toLowerCase()}>
+    <div className={className}>
       <div className="orbit" />
-      <Icon name={artIcons[category]} size={82} />
-      <span className="art-label">
-        {category.toUpperCase()} / CAMPUS ESSENTIALS
-      </span>
+      <Icon name={artIcons[category]} size={compact ? 28 : 82} />
+      {!compact && <span className="art-label">{category.toUpperCase()} / CAMPUS ESSENTIALS</span>}
     </div>
   );
 }
+
 function Modal({ title, onClose, children }) {
   const ref = useRef();
   useEffect(() => {
@@ -728,12 +747,11 @@ export default function App() {
               <div className="request-list">
                 {requests.map((r) => (
                   <article className="request-card" key={r._id}>
-                    <div className="request-icon">
-                      <Icon
-                        name={artIcons[r.equipment?.category] || "bag"}
-                        size={28}
-                      />
-                    </div>
+                    <Art
+                      category={r.equipment?.category}
+                      name={r.equipment?.name || r.equipmentName}
+                      compact
+                    />
                     <div className="request-info">
                       <div className="request-title">
                         <h3>{r.equipment?.name || r.equipmentName}</h3>
@@ -1036,7 +1054,7 @@ export default function App() {
           )}
           <footer>
             CampusKit <span>Shared tools. Brighter ideas.</span>
-            <small>COMP229 · Equipment lending</small>
+            <small><a href="/equipment/photo-credits.html" target="_blank" rel="noreferrer">Photo credits</a> · COMP229 · Equipment lending</small>
           </footer>
         </main>
       </div>
@@ -1171,6 +1189,9 @@ export default function App() {
           )}
           {modal.type === "borrow" && (
             <>
+              <div className="equipment-detail-photo">
+                <Art category={modal.item?.category} name={modal.item?.name} />
+              </div>
               <div className="borrow-summary">
                 <div className="request-icon">
                   <Icon name={artIcons[modal.item?.category]} size={30} />
