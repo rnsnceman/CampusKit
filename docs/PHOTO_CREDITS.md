@@ -74,13 +74,10 @@ Reference photos illustrate the equipment, not the condition of the college inve
 - Image: https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Zoom_H5.jpg/960px-Zoom_H5.jpg
 - Changes: Wikimedia-generated thumbnail; no additional pixel edits. CSS scales the image to fit without cropping.
 
-## Led Video Light Kit
+## LED Video Light Kit
 
-- Asset: `client/public/equipment/led-video-light.jpg`
-- Description: Illustrative Digitek LED video light panel; kit accessories are not shown
-- Photographer: Sumitsurai
-- License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
-- Source: https://commons.wikimedia.org/wiki/File:Digitek_Video_Light_-_LED_D132_ML_RGB.jpg
-- Image: https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Digitek_Video_Light_-_LED_D132_ML_RGB.jpg/960px-Digitek_Video_Light_-_LED_D132_ML_RGB.jpg
-- Changes: Wikimedia-generated thumbnail; no additional pixel edits. CSS scales the image to fit without cropping.
+- Asset: `client/public/equipment/led-video-light.png`
+- Description: Illustrative generic LED video light panel with stand, cable, and carrying case; the exact model and kit contents may differ.
+- Creator: Generated for the CampusKit demo using OpenAI image generation.
+- License: Original AI-generated image; not a photograph of campus inventory.
 

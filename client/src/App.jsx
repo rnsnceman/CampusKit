@@ -114,7 +114,7 @@ const artIcons = {
 function Art({ category = "Accessories", name = "", compact = false }) {
   const photo = getEquipmentPhoto(name);
   const [failedSrc, setFailedSrc] = useState(null);
-  const className = "art art-" + category.toLowerCase() + (compact ? " art--compact" : "");
+  const className = "art art-" + category.toLowerCase() + (compact ? " art--compact" : "") + (photo?.framing ? " equipment-photo--" + photo.framing : "");
   if (photo && failedSrc !== photo.src) {
     return (
       <div className={className + " equipment-photo"}>
@@ -583,7 +583,7 @@ export default function App() {
                   <div className="hero-circle" />
                   <Icon name="camera" size={125} />
                   <div className="hero-sticker">
-                    YOURS TO
+                    BORROW TO
                     <br />
                     <strong>CREATE.</strong>
                     <span>↗</span>

@@ -9,6 +9,7 @@ const equipmentPhotos = {
   "audio-technica at2020": {
     "src": "/equipment/at2020.jpg",
     "alt": "Audio-Technica AT2020 condenser microphone",
+    "framing": "at2020",
     "reference": false
   },
   "focusrite scarlett 2i2": {
@@ -37,8 +38,8 @@ const equipmentPhotos = {
     "reference": false
   },
   "led video light kit": {
-    "src": "/equipment/led-video-light.jpg",
-    "alt": "Illustrative Digitek LED video light panel; kit accessories are not shown",
+    "src": "/equipment/led-video-light.png",
+    "alt": "Illustrative generic LED video light panel with stand, cable, and carrying case; the exact model and kit contents may differ",
     "reference": true
   }
 }
