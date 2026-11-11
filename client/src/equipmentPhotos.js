@@ -24,7 +24,7 @@ const equipmentPhotos = {
   },
   "manfrotto compact tripod": {
     "src": "/equipment/manfrotto-tripod.jpg",
-    "alt": "Illustrative Manfrotto tripod photo; the specific model may differ",
+    "alt": "Illustrative compact camera tripod; the specific model may differ",
     "reference": true
   },
   "canon eos rebel t7": {
@@ -38,7 +38,7 @@ const equipmentPhotos = {
     "reference": false
   },
   "led video light kit": {
-    "src": "/equipment/led-video-light.png",
+    "src": "/equipment/led-video-light.jpg",
     "alt": "Illustrative generic LED video light panel with stand, cable, and carrying case; the exact model and kit contents may differ",
     "reference": true
   }
