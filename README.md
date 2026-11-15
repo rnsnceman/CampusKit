@@ -1,9 +1,6 @@
 # CampusKit
 Campus equipment lending application. COMP229 - Web Application Development, Project Part 1.
 
-**First-release starter for your team to review, understand, customize, and extend.** The application code is implemented; the team-specific submission materials remain drafts. No real college service or institutional integration is implied.
-
-## Try it immediately (temporary demo)
 Install Node.js 22.12 or newer, unzip the project, open Terminal in the `CampusKit` folder, and run:
 
 ```bash
@@ -35,8 +32,6 @@ node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
 5. Set `MONGODB_URI` in `.env`. The default is `mongodb://127.0.0.1:27017/campuskit`. This uses its own database; it does not clear your other coursework databases.
 6. Run `npm run seed`. It creates 8 sample assets and the two sample accounts. **Save the generated passwords printed in Terminal.** Optional `SEED_ADMIN_PASSWORD` and `SEED_STUDENT_PASSWORD` values set the initial passwords instead. Existing accounts and assets are preserved; running seed again does not reset their passwords.
 7. Run `npm run dev`, then open **http://localhost:5001**.
-
-Do not put `.env`, database credentials, or actual passwords in GitHub. `.gitignore` excludes them. For Atlas, configure the database account and permitted network access in your own Atlas project; never expose a database password in the browser code.
 
 ## What works
 - Student registration, login, JWT authentication, and staff/student authorization.
@@ -85,28 +80,6 @@ tests/                Supertest + Node test runner integration tests
 postman/              Importable collection and environment
 docs/                 Draft PDFs, editable source notes, wireframes and screenshots
 ```
-
-## API testing
-See `docs/API_REFERENCE.md`. Import both JSON files in `postman/` into Postman and select the CampusKit environment. Start the app first. The collection creates a new test student and a test asset, tests permissions and the approval/return workflow, then removes those test records. It does not remove the seeded sample assets. Set `adminPassword` to your generated seed password for persistent mode; demo mode uses the documented demo password. Run the collection in its listed order. It stores IDs and JWTs in the selected local environment during a run; clear them before exporting evidence or sharing.
-
-Automated tests run against actual MongoDB without touching the persistent application database. They check password hashing, unique records, role escalation protection, invalid login/tokens, equipment CRUD, input validation, request ownership, loan transitions, deletion guards, competing approvals, and password-change token invalidation.
-
-## Submission materials and remaining student actions
-Open `docs/START_HERE.md` for the checklist. The course brief specifies teams of 4-6; this package now lists Yuri Koller (Student ID 301416052) as the sole student and flags that instructor direction/approval is needed before submitting as an individual. No additional members, signatures, course approval, task-board activity, or video have been invented.
-
-The package includes:
-- EDD v1 draft with requirements, data design, wireframes, initial account-screen screenshots, Yuri's student details, and verification limits.
-- Solo project work agreement draft for Yuri Koller to review and sign if the instructor accepts the arrangement.
-- CampusKit logo PDF and editable SVG.
-- Proposed product backlog PDF and CSV for importing into an actual task board.
-- Solo demo outline for the required two-slide deck and 5-10 minute video; the finished deck and video are not included.
-
-Before submission, confirm the solo arrangement with the instructor, complete and sign the work agreement, add a genuine current photo to the slide deck, update and export the actual task board, capture current authenticated/API evidence, and add the actual board and video URLs. The Git remote in this package is `https://github.com/rnsnceman/CampusKit`; confirm this is the URL to submit. Do not submit placeholders or drafts as completed evidence.
-
-## First-release boundaries
-This is a classroom first release, not a hardened production lending service. It does not include email verification, password reset emails, calendar reservations, renewal/fine rules, file uploads, or institutional single sign-on. There is no public deployment in this package. Never deploy the demo credentials or temporary database as a real service.
-
-Approval claims use an atomic update on the asset and a conditional update on the request, with compensating release when the request changes. These are **not one multi-document transaction**: abrupt process/database failure between writes can require manual reconciliation. Deletion checks and related writes are also not transactionally isolated. A future production release should use MongoDB replica-set transactions for those cross-collection workflows, introduce pagination, retention/audit policies, and a deployment-specific security review.
 
 ## References
 - Assignment: Project Part 1.docx, supplied course instructions.
