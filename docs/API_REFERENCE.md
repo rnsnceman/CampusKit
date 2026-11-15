@@ -37,6 +37,3 @@ Password: `{"currentPassword":"ExamplePassword123!","password":"DifferentPasswor
 
 ## Responses
 200 successful read/update/login; 201 created; 204 deleted; 400 invalid input; 401 missing/invalid login or token; 403 insufficient role/ownership; 404 missing record; 409 duplicate or conflicting workflow; 429 too many authentication attempts. Errors return `{"message":"..."}`. A missing record during an atomic equipment update/delete can return 409. Equipment and requests are bounded by the classroom scope; pagination is future work.
-
-## Suggested manual evidence
-Capture Postman results for registration/login, equipment CRUD, request CRUD, student denied staff operation (403), unauthenticated request (401), approval and return (200), duplicate request (409), and invalid data (400). Keep JWTs and passwords out of shared screenshots. Compare MongoDB records before and after approval/return to explain persistence.

@@ -18,7 +18,7 @@ Open **http://localhost:5001**. The API runs on port **5002**, avoiding the macO
 | Administrator | admin@campuskit.test | CampusKitDemo2026! |
 | Student | student@campuskit.test | CampusKitDemo2026! |
 
-**Demo data is temporary and disappears when you stop the demo.** The demo uses a real temporary MongoDB server, not mock API responses. Its first run may download a MongoDB binary and requires internet access. These publicly documented demo credentials are only for this local classroom demonstration. Use the persistent setup below for your group's ongoing work. Press Control+C to stop.
+**Demo data is temporary and disappears when you stop the demo.** The demo uses a real temporary MongoDB server, not mock API responses. Its first run may download a MongoDB binary and requires internet access. These publicly documented demo credentials are only for this local classroom demonstration. Use the persistent setup below for the project's ongoing work. Press Control+C to stop.
 
 ## Persistent local database setup
 Requires MongoDB Community 7.0+ (or a MongoDB Atlas connection) and Node.js 22.12+.
@@ -91,15 +91,17 @@ See `docs/API_REFERENCE.md`. Import both JSON files in `postman/` into Postman a
 
 Automated tests run against actual MongoDB without touching the persistent application database. They check password hashing, unique records, role escalation protection, invalid login/tokens, equipment CRUD, input validation, request ownership, loan transitions, deletion guards, competing approvals, and password-change token invalidation.
 
-## Submission materials and what your group must do
-Open `docs/START_HERE.md` for a checklist. The PDFs and Markdown are drafts. **Do not submit placeholders, an unsigned contract, or the proposed backlog as evidence of a real task board.** The package includes:
-- EDD v1 draft with requirements, data design, wireframes, initial account-screen screenshots, and verification limits.
-- Team contract draft for 4-6 actual team members to review and sign.
-- Proposed CampusKit team logo PDF and editable SVG.
-- Proposed product backlog PDF and CSV for importing into your team's actual board.
-- Suggested task division and a 7-8 minute video guide, including the required two-slide content.
+## Submission materials and remaining student actions
+Open `docs/START_HERE.md` for the checklist. The course brief specifies teams of 4-6; this package now lists Yuri Koller (Student ID 301416052) as the sole student and flags that instructor direction/approval is needed before submitting as an individual. No additional members, signatures, course approval, task-board activity, or video have been invented.
 
-Your group must add real member names, student IDs, agreed roles, signatures, and current photos; create the actual team GitHub repository and task board; commit each member's actual contribution under their own account; capture the team's current board as a PDF; finish the two-slide deck; and record/upload the demo. No contribution history, signatures, photos, URLs, or completed board history have been invented.
+The package includes:
+- EDD v1 draft with requirements, data design, wireframes, initial account-screen screenshots, Yuri's student details, and verification limits.
+- Solo project work agreement draft for Yuri Koller to review and sign if the instructor accepts the arrangement.
+- CampusKit logo PDF and editable SVG.
+- Proposed product backlog PDF and CSV for importing into an actual task board.
+- Solo demo outline for the required two-slide deck and 5-10 minute video; the finished deck and video are not included.
+
+Before submission, confirm the solo arrangement with the instructor, complete and sign the work agreement, add a genuine current photo to the slide deck, update and export the actual task board, capture current authenticated/API evidence, and add the actual board and video URLs. The Git remote in this package is `https://github.com/rnsnceman/CampusKit`; confirm this is the URL to submit. Do not submit placeholders or drafts as completed evidence.
 
 ## First-release boundaries
 This is a classroom first release, not a hardened production lending service. It does not include email verification, password reset emails, calendar reservations, renewal/fine rules, file uploads, or institutional single sign-on. There is no public deployment in this package. Never deploy the demo credentials or temporary database as a real service.
