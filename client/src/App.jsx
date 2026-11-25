@@ -216,6 +216,16 @@ export default function App() {
     [category, setCategory] = useState("All equipment"),
     [available, setAvailable] = useState(false),
     [authMode, setAuthMode] = useState("login");
+  const [publicEquipment, setPublicEquipment] = useState([]);
+  useEffect(() => {
+    if (session) return;
+    const controller = new AbortController();
+    fetch("/api/equipment", { signal: controller.signal })
+      .then((res) => { if (!res.ok) throw new Error("Collection unavailable"); return res.json(); })
+      .then((data) => setPublicEquipment(data.equipment || []))
+      .catch((error) => { if (error.name !== "AbortError") setPublicEquipment([]); });
+    return () => controller.abort();
+  }, [!!session]);
   const admin = session?.user.role === "admin";
   async function api(path, options = {}) {
     const res = await fetch("/api" + path, {
@@ -332,6 +342,20 @@ export default function App() {
               From your first podcast to your final project, borrow the tools to
               bring it to life.
             </p>
+            <div className="public-collection" aria-label="Campus equipment preview" style={{ marginTop: 32, maxWidth: 520 }}>
+              <h2 style={{ fontSize: 18, marginBottom: 12 }}>Explore the collection</h2>
+              {publicEquipment.length ? (
+                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 8, maxHeight: 192, overflowY: "auto" }}>
+                  {publicEquipment.map((item) => (
+                    <li key={item._id} style={{ padding: "10px 12px", border: "1px solid #bdcba9", borderRadius: 8, display: "flex", justifyContent: "space-between", gap: 12 }}>
+                      <span><strong>{item.name}</strong><br /><small>{item.category} · {item.location}</small></span>
+                      <small>{item.status === "available" ? "Available" : "Unavailable"}</small>
+                    </li>
+                  ))}
+                </ul>
+              ) : <p>Equipment will appear here when the collection is ready.</p>}
+              <p style={{ fontSize: 13, marginTop: 12 }}>Sign in or create an account to request an item.</p>
+            </div>
             <div className="auth-icons">
               <Icon name="camera" size={42} />
               <Icon name="audio" size={42} />
@@ -498,7 +522,7 @@ export default function App() {
             </strong>
           </span>
           <div className="top-right">
-            <span className="semester">COMP229 · FIRST RELEASE</span>
+            <span className="semester">COMP229 · SECOND RELEASE</span>
             <button
               className="icon-button refresh"
               onClick={refresh}
