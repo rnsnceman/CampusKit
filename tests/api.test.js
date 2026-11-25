@@ -33,9 +33,14 @@ test('register creates student, hashes password, ignores role escalation',async(
  await send('post','/auth/register',null,{name:'Copy',email:'new@test.ca',password:pass}).expect(409);
  await User.findByIdAndDelete(u.id);
 });
-test('authentication rejects invalid login, missing token and forged token',async()=>{
+test('authentication protects private routes while equipment browsing is public',async()=>{
  await send('post','/auth/login',null,{email:'student@test.ca',password:'WrongPassword123!'}).expect(401);
- await send('get','/equipment').expect(401);await send('get','/equipment','forged-token').expect(401);
+ const item=await asset();
+ const list=await send('get','/equipment').expect(200);assert.equal(list.body.equipment[0]._id,item._id);
+ await send('get','/equipment/'+item._id).expect(200);
+ await send('get','/requests').expect(401);
+ await send('post','/equipment',null,assetData).expect(401);
+ await send('get','/auth/me','forged-token').expect(401);
  await send('get','/auth/me',student).expect(200);
 });
 test('students cannot list users or mutate equipment',async()=>{
