@@ -67,6 +67,12 @@ JWTs stay in React memory. Refreshing the browser requires signing in again. Log
 
 To verify the production-style local app, run `npm run build` then `npm start` and open http://localhost:5002. The production start requires the persistent `.env` configuration. Health endpoint: `GET /api/health`.
 
+## Cloud release and browser test
+
+The Part 2 deployment is at https://campuskit-comp229.onrender.com/. The same Express service serves the built React client and `/api` routes. Its MongoDB connection and JWT secret are configured as private service environment variables. The database uses a separate Atlas project. Create an administrator account through the seed script when setting up a new environment; do not commit credentials or `.env` files.
+
+The end-to-end journey is in `e2e/campuskit.cy.js`. On a machine with Cypress installed, start the built application, then run `npx cypress run --config-file cypress.config.cjs`. To test the hosted release, set `CAMPUSKIT_E2E_URL=https://campuskit-comp229.onrender.com` before that command. This test creates a uniquely named disposable student and a cancelled request; use an isolated test database for repeatable automated runs. Cypress is intentionally not installed during the production build.
+
 ## MVC structure
 ```text
 server/config/        MongoDB connection
