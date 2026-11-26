@@ -348,6 +348,7 @@ export default function App() {
                 </ul>
               ) : <p>Equipment will appear here when the collection is ready.</p>}
               <p style={{ fontSize: 13, marginTop: 12 }}>Sign in or create an account to request an item.</p>
+              <p style={{ fontSize: 13, marginTop: 8 }}>Browse shared campus gear, then tell us what you are making.</p>
             </div>
             <div className="auth-icons">
               <Icon name="camera" size={42} />
