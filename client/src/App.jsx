@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getEquipmentPhoto } from "./equipmentPhotos.js";
-const categories = ["Audio", "Cameras", "Computing", "Accessories"];
+import { categories, filterEquipment } from "./catalog.js";
 function Icon({ name, size = 20, ...props }) {
   const paths = {
     grid: (
@@ -308,14 +308,7 @@ export default function App() {
   }
   const today = new Date().toISOString().slice(0, 10),
     maxDate = new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10);
-  const filtered = equipment.filter(
-    (e) =>
-      (category === "All equipment" || e.category === category) &&
-      (!available || e.status === "available") &&
-      `${e.name} ${e.assetTag} ${e.description}`
-        .toLowerCase()
-        .includes(query.toLowerCase()),
-  );
+  const filtered = filterEquipment(equipment, { category, available, query });
   const pending = requests.filter((r) => r.status === "pending").length;
   function logout() {
     setSession(null);
